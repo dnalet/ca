@@ -10,26 +10,30 @@
     <div class="container">
         {% for row in series_list|batch(3) %}
             <div class="row">
-                {% for series in row %}
+                {% for series_id, series in row %}
                     <div class="col-md-4"
                          style="border-style: solid; border-color: #485F6E; padding: 15px;">
                         <div class="thumbnail">
-                            <img src=https://vignette2.wikia.nocookie.net/marveldatabase/images/d/d5/Amazing_Spider-Man_Vol_1_1.jpg/revision/latest?cb=20170406023340
-                                 style="display:block; margin:auto;">
-                            <div class="thumbnail" style="text-align: center; padding-top: 8px;">
-                                <h5>
-                                    {{ series['seriesName'] }}
-                                </h5>
-                                <p>
-                                    ({{ series['releaseDate'].year }} -
-                                    {{ series['endDate'].year }})<br>{{ series['numOfIssues'] }}
-                                    issue(s).
-                                </p>
-                                <p>
-                                    <a href="#" class="btn btn-primary" role="button">Edit</a>
-                                    <a href="#" class="btn btn-default" role="button">Delete</a>
-                                </p>
-                            </div>
+                            <a href="/series/{{ series_id }}">
+                                <img src=https://vignette2.wikia.nocookie.net/marveldatabase/images/d/d5/Amazing_Spider-Man_Vol_1_1.jpg/revision/latest?cb=20170406023340
+                                     style="display:block; margin:auto;">
+
+                                <div class="thumbnail"
+                                     style="text-align: center; padding-top: 8px;">
+                                    <h5>
+                                        {{ series['seriesName'] }}
+                                    </h5>
+                                    <p>
+                                        ({{ series['releaseDate'].year }} -
+                                        {{ series['endDate'].year }})<br>{{ series['numOfIssues'] }}
+                                        issue(s).
+                                    </p>
+                                    <p>
+                                        <a href="#" class="btn btn-primary" role="button">Edit</a>
+                                        <a href="#" class="btn btn-default" role="button">Delete</a>
+                                    </p>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 {% endfor %}

@@ -10,22 +10,21 @@ connection = pymysql.connect(host='localhost',
 
 
 def sql_get(sql):
-    try:
-        with connection.cursor() as cursor:
-            cursor.execute(sql)
-            result = cursor.fetchall()
-            return result
-    finally:
-        connection.close()
+    with connection.cursor() as cursor:
+        cursor.execute(sql)
+        result = cursor.fetchall()
+        return result
 
 
 @app.route('/')
 def index():
     series = sql_get('SELECT * from series')
+    series_id_list = sql_get('SELECT seriesID from series')
+    series_to_id = zip(series_id_list, series)
     year = series[0]['releaseDate'].year
     return render_template('index.html',
                            page_title='Home - All Series',
-                           series_list=series,
+                           series_list=series_to_id,
                            year=year)
 
 
