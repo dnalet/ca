@@ -1,11 +1,10 @@
 import datetime
 
-from flask import render_template, request, redirect, flash
-from flask_wtf import FlaskForm
+import pymysql
 
 from app import app
+from flask import render_template, request, redirect, flash
 from .forms import AddIssueForm
-import pymysql
 
 connection = pymysql.connect(host='localhost',
                              user='root',
