@@ -37,12 +37,12 @@
                                         <p>
                                             {{ character['earthID'] }}<br>
                                         </p>
-                                        <p>
+                                        {#<p>
                                             <a href="#" class="btn btn-primary"
                                                role="button">Edit</a>
                                             <a href="#" class="btn btn-default"
                                                role="button">Delete</a>
-                                        </p>
+                                        </p>#}
                                     </div>
                                 </a>
                             </div>
@@ -51,9 +51,10 @@
                 </div>
             {% endfor %}
         </div>
+
+        <hr>
     {% endif %}
 
-    <hr>
     {% if character_list[1]|length > 0 %}
         <h2 style="text-align: center">Supporting Characters:</h2>
         <div class="container">
@@ -72,12 +73,12 @@
                                         <p>
                                             {{ character['earthID'] }}<br>
                                         </p>
-                                        <p>
+                                        {#<p>
                                             <a href="#" class="btn btn-primary"
                                                role="button">Edit</a>
                                             <a href="#" class="btn btn-default"
                                                role="button">Delete</a>
-                                        </p>
+                                        </p>#}
                                     </div>
                                 </a>
                             </div>
@@ -86,9 +87,9 @@
                 </div>
             {% endfor %}
         </div>
-    {% endif %}
 
-    <hr>
+        <hr>
+    {% endif %}
 
     {% if character_list[2]|length > 0 %}
         <h2 style="text-align: center">Antagonists:</h2>
@@ -108,12 +109,12 @@
                                         <p>
                                             {{ character['earthID'] }}<br>
                                         </p>
-                                        <p>
+                                        {#<p>
                                             <a href="#" class="btn btn-primary"
                                                role="button">Edit</a>
                                             <a href="#" class="btn btn-default"
                                                role="button">Delete</a>
-                                        </p>
+                                        </p>#}
                                     </div>
                                 </a>
                             </div>

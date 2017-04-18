@@ -22,6 +22,7 @@ def sql_get(sql):
 def sql_exec(sql):
     with connection.cursor() as cursor:
         cursor.execute(sql)
+    connection.commit()
 
 
 @app.context_processor
@@ -37,7 +38,7 @@ def index():
     series = sql_get(
         'SELECT series.seriesID, series.seriesName, series.releaseDate, '
         'series.endDate, series.numOfIssues, issue.imageURL FROM series '
-        'INNER JOIN issue ON issue.seriesName = series.seriesName '
+        'INNER JOIN issue ON issue.seriesID = series.seriesID '
         'GROUP BY series.seriesName ORDER BY seriesID'
     )
     return render_template('index.html',
@@ -48,7 +49,7 @@ def index():
 def issues(series_id):
     issue_list = sql_get(
         'SELECT * FROM issue INNER JOIN series '
-        'ON issue.seriesName = series.seriesName '
+        'ON issue.seriesID = series.seriesID '
         'WHERE series.seriesID = {} ORDER BY issue.issueNum'.format(series_id)
     )
     return render_template('series.html',
@@ -72,9 +73,9 @@ def issue(issue_id):
         )
 
     issue_data = sql_get(
-        'SELECT issue.issueName, issue.issueNum, issue.seriesName, issue.releaseDate, '
+        'SELECT issue.issueName, issue.issueNum, issue.seriesID, issue.releaseDate, '
         'issue.imageURL, issue.issueID, series.numOfIssues FROM issue INNER JOIN series '
-        'ON series.seriesName = issue.seriesName WHERE issueID={}'.format(
+        'ON series.seriesID = issue.seriesID WHERE issueID={}'.format(
             issue_id)
     )
     protagonist_list = char_list('Protagonist')
@@ -93,7 +94,7 @@ def character(character_id):
             'SELECT issue.issueNum, earthtimet.earthID, earthtimet.charName, earthtimet.charID, '
             'earthtimet.seriesID,'
             ' earthtimet.issueID, earthtimet.typeOfChar, issue.issueName, issue.releaseDate, '
-            'issue.seriesName, issue.imageURL '
+            'issue.seriesID, issue.imageURL '
             'FROM ( '
             'SELECT charactersearth.earthID, timet.charName, timet.charID, timet.seriesID, '
             'timet.issueID, timet.typeOfChar '
@@ -129,7 +130,7 @@ def delete_issue(issue_id):
     series = sql_get(
         'SELECT series.seriesID, series.seriesName, series.releaseDate, '
         'series.endDate, series.numOfIssues, issue.imageURL FROM series '
-        'INNER JOIN issue ON issue.seriesName = series.seriesName '
+        'INNER JOIN issue ON issue.seriesID = series.seriesID '
         'GROUP BY series.seriesName ORDER BY seriesID'
     )
     return render_template('index.html',

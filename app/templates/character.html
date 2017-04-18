@@ -11,105 +11,118 @@
     <hr>
 
     <h2 style="text-align: center">Appearances:</h2>
-    <h4 style="text-align: center">As Featured:</h4>
-    <div class="container">
-        {% for row in appearences[0]|batch(3) %}
-            <div class="row">
-                {% for issue in row %}
-                    <div class="col-md-4"
-                         style="padding: 15px;">
-                        <div class="thumbnail">
-                            <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
-                                <img src="{{ issue['imageURL'] }}"
-                                     style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
-                                <div class="thumbnail"
-                                     style="text-align: center; padding-top: 8px;">
-                                    <h5>
-                                        {{ '{} #{}'.format(issue['seriesName'], issue['issueNum']) }}
-                                    </h5>
-                                    <p>
-                                        "{{ issue['issueName'] }}"<br>
-                                        ({{ issue['releaseDate'].year }})<br>
-                                        ({{ issue['earthID'] }})
-                                    </p>
-                                    <p>
-                                        <a href="#" class="btn btn-primary" role="button">Edit</a>
-                                        <a href="#" class="btn btn-default" role="button">Delete</a>
-                                    </p>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endfor %}
-    </div>
 
     <hr>
 
-    <h4 style="text-align: center">As Supporting:</h4>
-    <div class="container">
-        {% for row in appearences[1]|batch(3) %}
-            <div class="row">
-                {% for issue in row %}
-                    <div class="col-md-4"
-                         style="padding: 15px;">
-                        <div class="thumbnail">
-                            <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
-                                <img src="{{ issue['imageURL'] }}"
-                                     style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
-                                <div class="thumbnail"
-                                     style="text-align: center; padding-top: 8px;">
-                                    <h5>
-                                        {{ '{} #{}'.format(issue['seriesName'], issue['issueNum']) }}
-                                    </h5>
-                                    <p>
-                                        "{{ issue['issueName'] }}"<br>
-                                        ({{ issue['releaseDate'].year }})<br>
-                                        ({{ issue['earthID'] }})
-                                    </p>
-                                    <p>
-                                        <a href="#" class="btn btn-primary" role="button">Edit</a>
-                                        <a href="#" class="btn btn-default" role="button">Delete</a>
-                                    </p>
-                                </div>
-                            </a>
+    {% if appearences[0]|length > 0 %}
+        <h4 style="text-align: center">As Featured:</h4>
+        <div class="container">
+            {% for row in appearences[0]|batch(3) %}
+                <div class="row">
+                    {% for issue in row %}
+                        <div class="col-md-4"
+                             style="padding: 15px;">
+                            <div class="thumbnail">
+                                <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
+                                    <img src="{{ issue['imageURL'] }}"
+                                         style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
+                                    <div class="thumbnail"
+                                         style="text-align: center; padding-top: 8px;">
+                                        <h5>
+                                            {{ '{} #{}'.format(issue['seriesName'], issue['issueNum']) }}
+                                        </h5>
+                                        <p>
+                                            "{{ issue['issueName'] }}"<br>
+                                            ({{ issue['releaseDate'].year }})<br>
+                                            ({{ issue['earthID'] }})
+                                        </p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary"
+                                               role="button">Edit</a>
+                                            <a href="#" class="btn btn-default"
+                                               role="button">Delete</a>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endfor %}
-    </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
 
-    <hr>
+        <hr>
+    {% endif %}
 
-    <h4 style="text-align: center">As Antagonist:</h4>
-    <div class="container">
-        {% for row in appearences[2]|batch(3) %}
-            <div class="row">
-                {% for issue in row %}
-                    <div class="col-md-4"
-                         style="padding: 15px;">
-                        <div class="thumbnail">
-                            <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
-                                <img src="{{ issue['imageURL'] }}"
-                                     style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
-                                <div class="thumbnail"
-                                     style="text-align: center; padding-top: 8px;">
-                                    <h5>
-                                        {{ '{} #{}'.format(issue['seriesName'], issue['issueNum']) }}
-                                    </h5>
-                                    <p>
-                                        "{{ issue['issueName'] }}"<br>
-                                        ({{ issue['releaseDate'].year }})<br>
-                                        ({{ issue['earthID'] }})
-                                    </p>
-                                </div>
-                            </a>
+    {% if appearences[1]|length > 0 %}
+        <h4 style="text-align: center">As Supporting:</h4>
+        <div class="container">
+            {% for row in appearences[1]|batch(3) %}
+                <div class="row">
+                    {% for issue in row %}
+                        <div class="col-md-4"
+                             style="padding: 15px;">
+                            <div class="thumbnail">
+                                <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
+                                    <img src="{{ issue['imageURL'] }}"
+                                         style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
+                                    <div class="thumbnail"
+                                         style="text-align: center; padding-top: 8px;">
+                                        <h5>
+                                            {{ '{} #{}'.format(issue['seriesName'], issue['issueNum']) }}
+                                        </h5>
+                                        <p>
+                                            "{{ issue['issueName'] }}"<br>
+                                            ({{ issue['releaseDate'].year }})<br>
+                                            ({{ issue['earthID'] }})
+                                        </p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary"
+                                               role="button">Edit</a>
+                                            <a href="#" class="btn btn-default"
+                                               role="button">Delete</a>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
-        {% endfor %}
-    </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <hr>
+    {% endif %}
+
+    {% if appearences[2]|length > 0 %}
+        <h4 style="text-align: center">As Antagonist:</h4>
+        <div class="container">
+            {% for row in appearences[2]|batch(3) %}
+                <div class="row">
+                    {% for issue in row %}
+                        <div class="col-md-4"
+                             style="padding: 15px;">
+                            <div class="thumbnail">
+                                <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
+                                    <img src="{{ issue['imageURL'] }}"
+                                         style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
+                                    <div class="thumbnail"
+                                         style="text-align: center; padding-top: 8px;">
+                                        <h5>
+                                            {{ '{} #{}'.format(issue['seriesName'], issue['issueNum']) }}
+                                        </h5>
+                                        <p>
+                                            "{{ issue['issueName'] }}"<br>
+                                            ({{ issue['releaseDate'].year }})<br>
+                                            ({{ issue['earthID'] }})
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}
