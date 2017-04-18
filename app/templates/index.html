@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="jumbotron">
+    <div class="jumbotron" style="text-align: center;">
         <div class="container">
             <h1 class="display-3" style="padding-top: 25px">Spider-Man Comic Series</h1>
-            <h4>Here are all the Spider-Man series from {{ year }} onwards!</h4>
+            <h4>Here are the Spider-Man series from {{ year }} onwards</h4>
         </div>
     </div>
     <hr>
@@ -12,20 +12,29 @@
             <div class="row">
                 {% for series in row %}
                     <div class="col-md-4"
-                         style="border-style: solid; border-color: #485F6E; padding: 15px;">
+                         style="padding: 15px;">
                         <div class="thumbnail">
                             <a href="{{ '/series/{}'.format(series['seriesID']) }}">
                                 <img src="{{ series['imageURL'] }}"
-                                     style=" display:block; margin:auto;">
+                                     style="display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
                                 <div class="thumbnail"
                                      style="text-align: center; padding-top: 8px;">
                                     <h5>
                                         {{ series['seriesName'] }}
                                     </h5>
                                     <p>
-                                        ({{ series['releaseDate'].year }} -
-                                        {{ series['endDate'].year }})<br>
-                                        {{ series['numOfIssues'] }} issue(s).
+                                        {% if series['numOfIssues'] <= 0 %}
+                                            (Unknown Release Date)<br>
+                                            0 issues
+                                        {% elif series['numOfIssues'] == 1 %}
+                                            ({{ series['releaseDate'].year }} -
+                                            {{ series['endDate'].year }})<br>
+                                            {{ series['numOfIssues'] }} issue(s)
+                                        {% else %}
+                                            ({{ series['releaseDate'].year }} -
+                                            {{ series['endDate'].year }})<br>
+                                            {{ series['numOfIssues'] }} issue(s)
+                                        {% endif %}
                                     </p>
                                     <p>
                                         <a href="#" class="btn btn-primary" role="button">Edit</a>

@@ -1,14 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="jumbotron">
-        <div class="container">
+        <div class="container" style="text-align: center">
             <h1 class="display-3" style="padding-top: 25px">{{ issue_data[0]['seriesName'] }}</h1>
-            <h4>
-                {{ issue_data[0]['numOfIssues'] }} issues.
-            </h4>
-            <h5>
-                ({{ issue_data[0]['releaseDate'] }} - {{ issue_data[0]['endDate'] }})
-            </h5>
+            {% if issue_data[0]['numOfIssues'] <= 0 %}
+                <h4>
+                    0 issues
+                </h4>
+                <h5>
+                    (Unknown Release Date)
+                </h5>
+            {% elif issue_data[0]['numOfIssues'] == 1 %}
+                <h4>
+                    {{ issue_data[0]['numOfIssues'] }} issue
+                </h4>
+                <h5>
+                    ({{ issue_data[0]['releaseDate'].strftime("%d %B %Y") }})
+                </h5>
+            {% else %}
+                <h4>
+                    {{ issue_data[0]['numOfIssues'] }} issues
+                </h4>
+                <h5>
+                    ({{ issue_data[0]['releaseDate'].strftime("%d %B %Y") }}
+                    - {{ issue_data[0]['endDate'].strftime("%d %B %Y") }})
+                </h5>
+            {% endif %}
         </div>
     </div>
     <hr>
@@ -17,11 +34,11 @@
             <div class="row">
                 {% for issue in row %}
                     <div class="col-md-4"
-                         style="border-style: solid; border-color: #485F6E; padding: 15px;">
+                         style="padding: 15px;">
                         <div class="thumbnail">
                             <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
                                 <img src="{{ issue['imageURL'] }}"
-                                     style=" display:block; margin:auto;">
+                                     style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
                                 <div class="thumbnail"
                                      style="text-align: center; padding-top: 8px;">
                                     <h5>
