@@ -1,3 +1,5 @@
+import datetime
+
 from flask import render_template, request, redirect, flash
 from flask_wtf import FlaskForm
 
@@ -9,6 +11,7 @@ connection = pymysql.connect(host='localhost',
                              user='root',
                              password='root',
                              db='spidermancomics',
+                             charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 
 
@@ -121,17 +124,23 @@ def character(character_id):
 @app.route('/add/issue/', methods=['GET', 'POST'])
 def add_issue():
     form = AddIssueForm()
+    if form.validate_on_submit():
+        issue_name = str(request.form['issueName'])
+        issue_num = int(request.form['issueNum'])
+        image_url = str(request.form['imageURL'])
+        series_id = int(request.form['seriesID'])
+        release_date = datetime.date.today().strftime('%Y-%m-%d')
+        temp = "INSERT INTO issue(issueName, issueNum, seriesID, releaseDate, imageURL) " \
+               "VALUES ('%s','%s','%s','%s','%s')" % \
+               (issue_name, issue_num, series_id, release_date, image_url)
+        sql_exec(temp)
+        flash('Added!')
+        return redirect('/')
+    flash('Some input data was invalid!')
     return render_template('add_issue.html', form=form)
 
 
 @app.route('/delete/issue/<issue_id>', methods=['GET', 'POST'])
 def delete_issue(issue_id):
     sql_exec('DELETE FROM issue WHERE issueID = {} LIMIT 1'.format(issue_id))
-    series = sql_get(
-        'SELECT series.seriesID, series.seriesName, series.releaseDate, '
-        'series.endDate, series.numOfIssues, issue.imageURL FROM series '
-        'INNER JOIN issue ON issue.seriesID = series.seriesID '
-        'GROUP BY series.seriesName ORDER BY seriesID'
-    )
-    return render_template('index.html',
-                           series_list=series)
+    return redirect('/')

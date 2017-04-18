@@ -25,7 +25,7 @@
                             <div class="thumbnail">
                                 <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
                                     <img src="{{ issue['imageURL'] }}"
-                                         style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
+                                         style="width: 200px; display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
                                     <div class="thumbnail"
                                          style="text-align: center; padding-top: 8px;">
                                         <h5>
@@ -34,7 +34,11 @@
                                         <p>
                                             "{{ issue['issueName'] }}"<br>
                                             ({{ issue['releaseDate'].year }})<br>
-                                            ({{ issue['earthID'] }})
+                                            {% if issue['earthID'] %}
+                                                ({{ issue['earthID'] }})
+                                            {% else %}
+                                                (Unknown Earth)
+                                            {% endif %}
                                         </p>
                                         <p>
                                             <a href="#" class="btn btn-primary"
@@ -65,7 +69,7 @@
                             <div class="thumbnail">
                                 <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
                                     <img src="{{ issue['imageURL'] }}"
-                                         style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
+                                         style="width: 200px; display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
                                     <div class="thumbnail"
                                          style="text-align: center; padding-top: 8px;">
                                         <h5>
@@ -74,7 +78,11 @@
                                         <p>
                                             "{{ issue['issueName'] }}"<br>
                                             ({{ issue['releaseDate'].year }})<br>
-                                            ({{ issue['earthID'] }})
+                                            {% if issue['earthID'] %}
+                                                ({{ issue['earthID'] }})
+                                            {% else %}
+                                                (Unknown Earth)
+                                            {% endif %}
                                         </p>
                                         <p>
                                             <a href="#" class="btn btn-primary"
@@ -105,7 +113,7 @@
                             <div class="thumbnail">
                                 <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
                                     <img src="{{ issue['imageURL'] }}"
-                                         style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
+                                         style="width: 200px; display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
                                     <div class="thumbnail"
                                          style="text-align: center; padding-top: 8px;">
                                         <h5>
@@ -114,7 +122,11 @@
                                         <p>
                                             "{{ issue['issueName'] }}"<br>
                                             ({{ issue['releaseDate'].year }})<br>
-                                            ({{ issue['earthID'] }})
+                                            {% if issue['earthID'] %}
+                                                ({{ issue['earthID'] }})
+                                            {% else %}
+                                                (Unknown Earth)
+                                            {% endif %}
                                         </p>
                                     </div>
                                 </a>
