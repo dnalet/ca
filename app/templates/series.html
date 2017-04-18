@@ -1,4 +1,46 @@
 {% extends "base.html" %}
 {% block content %}
-
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3" style="padding-top: 25px">{{ issue_data[0]['seriesName'] }}</h1>
+            <h4>
+                {{ issue_data[0]['numOfIssues'] }} issues.
+            </h4>
+            <h5>
+                ({{ issue_data[0]['releaseDate'] }} - {{ issue_data[0]['endDate'] }})
+            </h5>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        {% for row in issue_data|batch(3) %}
+            <div class="row">
+                {% for issue in row %}
+                    <div class="col-md-4"
+                         style="border-style: solid; border-color: #485F6E; padding: 15px;">
+                        <div class="thumbnail">
+                            <a href="{{ '/issue/{}'.format(issue['issueID']) }}">
+                                <img src="{{ issue['imageURL'] }}"
+                                     style=" display:block; margin:auto;">
+                                <div class="thumbnail"
+                                     style="text-align: center; padding-top: 8px;">
+                                    <h5>
+                                        {{ '{} #{}'.format(issue['seriesName'], issue['issueNum']) }}
+                                    </h5>
+                                    <p>
+                                        "{{ issue['issueName'] }}"<br>
+                                        ({{ issue['releaseDate'].year }})
+                                    </p>
+                                    <p>
+                                        <a href="#" class="btn btn-primary" role="button">Edit</a>
+                                        <a href="#" class="btn btn-default" role="button">Delete</a>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
