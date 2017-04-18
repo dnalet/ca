@@ -1,4 +1,126 @@
 {% extends "base.html" %}
 {% block content %}
+    <div class="jumbotron">
+        <div class="container" style="text-align: center">
+            <h1 class="display-3" style="padding-top: 25px">
+                {{ issue_data[0]['issueName'] }}
+            </h1>
+            <h4>
+                {{ issue_data[0]['seriesName'] }}<br>
+                Issue #{{ issue_data[0]['issueNum'] }}/{{ issue_data[0]['numOfIssues'] }}
+            </h4>
+            <h5>
+                <img src="{{ issue_data[0]['imageURL'] }}"
+                     style=" display:block; margin:auto; border: solid rgba(72,95,110,0.1);">
+                ({{ issue_data[0]['releaseDate'].strftime("%d %B %Y") }})
+            </h5>
+        </div>
+    </div>
 
+    <hr>
+
+    {% if character_list[0]|length > 0 %}
+        <h2 style="text-align: center">Featured Characters:</h2>
+        <div class="container">
+            {% for row in character_list[0]|batch(3) %}
+                <div class="row">
+                    {% for character in row %}
+                        <div class="col-md-4"
+                             style="padding: 15px;">
+                            <div class="thumbnail">
+                                <a href="{{ '/character/{}'.format(character['charID']) }}">
+                                    <div class="thumbnail"
+                                         style="text-align: center; padding-top: 8px;">
+                                        <h5>
+                                            {{ character['charName'] }}
+                                        </h5>
+                                        <p>
+                                            {{ character['earthID'] }}<br>
+                                        </p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary"
+                                               role="button">Edit</a>
+                                            <a href="#" class="btn btn-default"
+                                               role="button">Delete</a>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <hr>
+    {% if character_list[1]|length > 0 %}
+        <h2 style="text-align: center">Supporting Characters:</h2>
+        <div class="container">
+            {% for row in character_list[1]|batch(3) %}
+                <div class="row">
+                    {% for character in row %}
+                        <div class="col-md-4"
+                             style="padding: 15px;">
+                            <div class="thumbnail">
+                                <a href="{{ '/character/{}'.format(character['charID']) }}">
+                                    <div class="thumbnail"
+                                         style="text-align: center; padding-top: 8px;">
+                                        <h5>
+                                            {{ character['charName'] }}
+                                        </h5>
+                                        <p>
+                                            {{ character['earthID'] }}<br>
+                                        </p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary"
+                                               role="button">Edit</a>
+                                            <a href="#" class="btn btn-default"
+                                               role="button">Delete</a>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <hr>
+
+    {% if character_list[2]|length > 0 %}
+        <h2 style="text-align: center">Antagonists:</h2>
+        <div class="container">
+            {% for row in character_list[2]|batch(3) %}
+                <div class="row">
+                    {% for character in row %}
+                        <div class="col-md-4"
+                             style="padding: 15px;">
+                            <div class="thumbnail">
+                                <a href="{{ '/character/{}'.format(character['charID']) }}">
+                                    <div class="thumbnail"
+                                         style="text-align: center; padding-top: 8px;">
+                                        <h5>
+                                            {{ character['charName'] }}
+                                        </h5>
+                                        <p>
+                                            {{ character['earthID'] }}<br>
+                                        </p>
+                                        <p>
+                                            <a href="#" class="btn btn-primary"
+                                               role="button">Edit</a>
+                                            <a href="#" class="btn btn-default"
+                                               role="button">Delete</a>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
 {% endblock %}

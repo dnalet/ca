@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Add Issue</h1>
+    <form action="" method="post" name="add_issue">
+        {{ form.csrf_token }}
+        <p>
+            Enter the Issue Name:<br>
+            {{ form.issueName(size=250) }}<br>
+        </p>
+        <p>
+            Enter the Issue Number:<br>
+            {{ form.issueNum(size=10) }}<br>
+        </p>
+        <p>
+            Enter the Image URL:<br>
+            {{ form.imageURL(size=500) }}<br>
+        </p>
+        <p>
+            Enter the SeriesID that this issue belongs to:<br>
+            {{ form.seriesID(size=10) }}<br>
+        </p>
+        <p><input type="submit" value="Add"></p>
+    </form>
+{% endblock %}

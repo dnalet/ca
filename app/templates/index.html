@@ -3,7 +3,8 @@
     <div class="jumbotron" style="text-align: center;">
         <div class="container">
             <h1 class="display-3" style="padding-top: 25px">Spider-Man Comic Series</h1>
-            <h4>Here are the Spider-Man series from {{ year }} onwards</h4>
+            <h4>Here are the Spider-Man series from {{ series_list[0]['releaseDate'].year }}
+                onwards</h4>
         </div>
     </div>
     <hr>
@@ -35,10 +36,6 @@
                                             {{ series['endDate'].year }})<br>
                                             {{ series['numOfIssues'] }} issue(s)
                                         {% endif %}
-                                    </p>
-                                    <p>
-                                        <a href="#" class="btn btn-primary" role="button">Edit</a>
-                                        <a href="#" class="btn btn-default" role="button">Delete</a>
                                     </p>
                                 </div>
                             </a>
